@@ -1,14 +1,13 @@
 /*
   (c) Copyright 2018, 2019 Phasmid Software
  */
-package edu.neu.coe.info6205.sort.linearithmic;
+package edu.neu.coe.huskySort.sort.simple;
 
-import edu.neu.coe.info6205.sort.BaseHelper;
-import edu.neu.coe.info6205.sort.Helper;
-import edu.neu.coe.info6205.sort.SortWithHelper;
-import edu.neu.coe.info6205.util.Config;
+import edu.neu.coe.huskySort.sort.BaseHelper;
+import edu.neu.coe.huskySort.sort.Helper;
+import edu.neu.coe.huskySort.sort.SortWithHelper;
+import edu.neu.coe.huskySort.util.Config;
 
-import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -17,6 +16,18 @@ import java.util.Arrays;
  * @param <X>
  */
 public class TimSort<X extends Comparable<X>> extends SortWithHelper<X> {
+
+    /**
+     * @param xs   sort the array xs from "from" until "to" (exclusive of to).
+     * @param from the index of the first element to sort.
+     * @param to   the index of the first element not to sort.
+     */
+    @Override
+    public void sort(X[] xs, int from, int to) {
+        Arrays.sort(xs, from, to);
+    }
+
+    public static final String DESCRIPTION = "Timsort";
 
     /**
      * Constructor for TimSort
@@ -37,18 +48,8 @@ public class TimSort<X extends Comparable<X>> extends SortWithHelper<X> {
         super(DESCRIPTION, N, config);
     }
 
-    public TimSort() throws IOException {
-        this(new BaseHelper<>(DESCRIPTION, Config.load(TimSort.class)));
+    public TimSort() {
+        this(new BaseHelper<>(DESCRIPTION));
     }
-
-    public void sorting(String[] strArr) {
-        sort((X[]) strArr, 0, strArr.length - 1);
-    }
-
-    public void sort(X[] xs, int from, int to) {
-        Arrays.sort(xs, from, to);
-    }
-
-    public static final String DESCRIPTION = "Timsort";
 }
 

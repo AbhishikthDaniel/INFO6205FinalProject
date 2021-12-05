@@ -31,15 +31,14 @@ public class QuickSortDualPivot {
         if ((arr[low].compareTo(arr[high])) > 0)
             swap(arr, low, high);
 
-// p is the left pivot, and q
-// is the right pivot.
+
         int j = low + 1;
         int g = high - 1, k = low + 1;
         String p = arr[low], q = arr[high];
 
         while (k <= g) {
 
-// If elements are less than the left pivot
+
             if ((arr[k].compareTo(p)) < 0) {
                 swap(arr, k, j);
                 j++;
