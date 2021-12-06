@@ -16,7 +16,7 @@ public class Driver {
     public static String[] tempList;
     public static void main(String[] args) {
         List<String> input = new ArrayList<>();
-        try(BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\Abhishikth Daniel M\\Desktop\\test\\INFO6205_FinalProject_Fall2021\\input.txt"))) {
+        try(BufferedReader in = new BufferedReader(new FileReader("/Users/ram/Documents/GitHub/INFO6205FinalProject/input.txt"))) {
             String str;
             while ((str = in.readLine()) != null) {
                 //  System.out.println(str);
@@ -32,7 +32,7 @@ public class Driver {
 
 
 
-        int[] size = {250000, 500000, 1000000};
+        int[] size = {250000, 500000, 1000000,2000000,4000000}; // input data length
         for(int i =0;i<size.length;i++){
 
 
