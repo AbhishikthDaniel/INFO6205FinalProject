@@ -1,9 +1,14 @@
 package edu.neu.coe.info6205.sort.counting;
 
+import edu.neu.coe.huskySort.sort.huskySort.PureHuskySort;
+import edu.neu.coe.huskySort.sort.huskySort.PureHuskySortTest;
+import edu.neu.coe.huskySort.sort.simple.TimSort;
 import edu.neu.coe.info6205.sort.BaseHelper;
+
 import edu.neu.coe.info6205.sort.Helper;
 import edu.neu.coe.info6205.util.Config;
 import org.junit.Test;
+import edu.neu.coe.info6205.sort.counting.*;
 
 import java.io.*;
 import java.net.URL;
@@ -13,13 +18,14 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class MSDStringSortTest {
 
-    String[] input = {"గత" , "కొంతకాలంగా" ,"అ", "ప్రపంచవ్యాప్తంగా", "కాకి" , "గ్లోబల్‌", "ఆ", "వార్మింగ్‌", "పేరు", "మార్మోగుతోంది" , "బొగ్గు", "గత" , "కొంతకాలంగా" ,"అ", "ప్రపంచవ్యాప్తంగా", "కాకి" , "గ్లోబల్‌", "ఆ", "వార్మింగ్‌", "పేరు", "మార్మోగుతోంది" , "బొగ్గు"};
-    String[] expected = {"అ", "అ", "ఆ", "ఆ", "కాకి", "కొంతకాలంగా", "కొంతకాలంగా", "కాకి", "గత","గత", "గ్లోబల్‌", "గ్లోబల్‌", "పేరు", "ప్రపంచవ్యాప్తంగా", "ప్రపంచవ్యాప్తంగా", "పేరు", "బొగ్గు", "బొగ్గు", "మార్మోగుతోంది", "మార్మోగుతోంది", "వార్మింగ్‌", "వార్మింగ్‌"};
+    String[] input = {"గత" , "కొంతకాలంగా" ,"అ", "ప్రపంచవ్యాప్తంగా", "గ్లోబల్‌", "ఆ", "వార్మింగ్‌",  "మార్మోగుతోంది" , "బొగ్గు", "గత" , "కొంతకాలంగా" ,"అ", "ప్రపంచవ్యాప్తంగా",  "గ్లోబల్‌", "ఆ", "వార్మింగ్‌", "మార్మోగుతోంది" , "బొగ్గు"};
+    String[] expected = {"అ", "అ", "ఆ", "ఆ", "కొంతకాలంగా", "కొంతకాలంగా", "గత","గత", "గ్లోబల్‌", "గ్లోబల్‌",  "ప్రపంచవ్యాప్తంగా", "ప్రపంచవ్యాప్తంగా",  "బొగ్గు", "బొగ్గు", "మార్మోగుతోంది", "మార్మోగుతోంది", "వార్మింగ్‌", "వార్మింగ్‌"};
 
 
     @Test
@@ -27,20 +33,34 @@ public class MSDStringSortTest {
         MSDStringSort.sort(input);
         System.out.println(Arrays.toString(input));
         assertArrayEquals(expected, input);
+        
+        
     }
 
+    
+    
     @Test
-    public void sort1() throws IOException {
-        int n = 1000;
-        final Helper<String> helper = new BaseHelper<>("test", n, 1L, Config.load(MSDStringSortTest.class));
-        helper.init(n);
-        String[] words = getWords("3000-common-words.txt", MSDStringSortTest::lineAsList);
-        final String[] xs = helper.random(String.class, r -> words[r.nextInt(words.length)]);
-        assertEquals(n, xs.length);
-        MSDStringSort.sort(xs);
-        //assertEquals("African-American", xs[0]);
-       // assertEquals("Palestinian", xs[16]);
+    public void sort3() {
+    	QuickSortDualPivot dp = new QuickSortDualPivot();
+    	dp.sort(input);
+        System.out.println(Arrays.toString(input));
+        assertArrayEquals(expected, input);
+        
+        
     }
+    
+    
+    @Test
+    public void sort2() {
+    	LSDStringSort lsd = new LSDStringSort();
+        lsd.sort(input);
+        System.out.println(Arrays.toString(input));
+        assertArrayEquals(expected, input);
+        
+        
+    }
+    
+    
 
     /**
      * Create a string representing an integer, with commas to separate thousands.
